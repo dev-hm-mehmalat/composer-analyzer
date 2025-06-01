@@ -1,9 +1,9 @@
 use core::fmt::Display;
-use serde::__private::fmt::Formatter;
-use std::fmt;
 use reqwest::Client;
+use serde::__private::fmt::Formatter;
 use serde_json::Value;
 use std::error::Error;
+use std::fmt;
 use std::fs;
 
 struct Package {
@@ -33,11 +33,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
     let data = [("key1", "value1"), ("key2", "value2")]; // Die Daten, die Sie senden möchten
 
-    let response = client
-        .post(url)
-        .form(&data)
-        .send()
-        .await?;
+    let response = client.post(url).form(&data).send().await?;
 
     if response.status().is_success() {
         println!("Anfrage erfolgreich gesendet!");
